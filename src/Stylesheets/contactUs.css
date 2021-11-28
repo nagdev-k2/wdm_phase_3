@@ -1,0 +1,221 @@
+/* Nagdev Kunal (1001934124)
+Movva Vinoothna (1001949256)
+Yadav Sandeep (1001945732) */
+
+.content{
+  width: 80%;
+  margin: auto;
+  /* border: 3px black solid; */
+}
+
+.content-title {
+  text-align: center;  
+}
+
+.contact_info{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: 100px; 
+  border: 1px dashed black;
+}
+.info_flex{
+  display: inline-flex;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+}
+.info_flex .email_image img{
+  width: 50px;
+  height:50px;
+  margin: 10px;
+}
+
+.auth-form-box-grid{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-auto-columns: repeat(2,1fr);
+  grid-template-rows: 50px;
+  grid-auto-rows: 50px;
+  column-gap: 20px;
+  row-gap: 10px;
+}
+
+.contact_us_image{
+grid-row: 1/6;
+grid-column: 2/2;
+}
+
+
+.contact_us_image img{
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+}
+.field-contact{
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: 90%;
+  margin:  0px;
+  width: 70%;
+  align-items: center;
+  display: flex;
+}
+
+.field-contact input{
+  border: 0px;
+  margin: 0px;
+  height: 90%;
+  padding: 0px;
+  width: 70%;
+}
+
+.field-contact input:focus-visible, .field_textarea textarea:focus-visible  {
+  outline:0ch;
+}
+
+.field_textarea {
+  grid-row: 4/6;
+  grid-column: 1/1 ;
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: 90%;
+  margin:  0px;
+  width: 70%;
+}
+
+.field_textarea textarea{
+  width: 98%;
+  border: 0px;
+  scrollbar-width: 0px;
+}
+
+.field-icon {
+  height: 50%;
+  width: auto;
+  margin: 5px;
+}
+
+.submit-req {
+  background-color: #085ED6;
+  height: 2.5em;
+  border-radius: 5px;
+  border: 0;
+  width: 40%;
+  color: white;
+  cursor: pointer;
+}
+
+.social-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social-link {
+  height: 30px;
+  width: auto;
+}
+
+@media screen and (max-width:800px){
+
+
+  .main-menu-landing{
+    flex-direction: column;
+  }
+  
+  .main-menu-logo{
+    width:25em; 
+    align-self: center;
+  }
+
+  .main-menu-landing ul{
+    padding: 0px 0px;
+  }
+
+
+ .contact_info{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    height: fit-content;
+    border: 1px dashed black;
+  }
+  .info_flex{
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    height: 25vh;
+    width: 33%;
+  }
+  .info_flex .email_image, .info_flex .mail_id{
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+
+  .info_flex .email_image img{
+    width: 50px;
+    height:50px;
+    margin-left: 5px;
+  }
+
+  .auth-form-box-grid{
+    /* background-image: url("../Assets/contact_page.PNG"); */
+    background-size: contain;
+    background-repeat: no-repeat  ;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-columns: 1fr;
+    grid-template-rows: 50px;
+    grid-auto-rows: 50px;
+    row-gap: 10px;
+    align-content: center;
+  }
+
+    .contact_us_image{
+  display: none;
+  }
+  
+  .field_textarea, .field{
+    opacity: 0.5;
+  }
+
+
+}
+
+
+@media screen and ( max-width : 500px) {
+  .contact_info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    height: fit-content;
+    border: 1px dashed black;
+  }
+  .info_flex{
+    display: inline-flex;
+    flex-direction: column;
+    height: 25vh;
+    width: 100%;
+  }
+  .info_flex .email_image, .info_flex .mail_id{
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .field-contact{
+  width: 90%;
+  
+  }
+  .field_textarea{
+    width: 90%;
+  }
+
+}

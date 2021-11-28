@@ -1,0 +1,33 @@
+.icon {
+  height: 20px;
+  width: auto;
+}
+
+.click-here {
+  background: transparent;
+  border: 0;
+  color: coral;
+}
+
+.has-error {
+  border-color: #df4759 !important;
+}
+
+.has-error:focus {
+  box-shadow: 0 0 0 0.25rem rgb(223, 71, 89 , 25%) !important;
+}
+
+.error-msg {
+  color: #df4759;
+}
+
+.custom-modal-footer {
+  padding-top: 20px;
+  border-top: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+}
+
+Button {
+  margin-right: 10px !important;
+}

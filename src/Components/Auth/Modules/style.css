@@ -1,0 +1,111 @@
+.table-btn-icon {
+  width: auto;
+  height: 30px;
+}
+
+.data-table {
+  font-size: 12px;
+  color: #333333;
+  width: 100%;
+  border-width: 1px;
+  border-color: #729ea5;
+  border-collapse: collapse;
+  overflow: scroll;
+}
+
+.data-table th {
+  font-size: 12px;
+  background-color:#acc8cc;
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #729ea5;
+  text-align:left;
+}
+
+.data-table tr {
+  background-color: white;
+}
+
+.data-table td {
+  font-size:12px;
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #729ea5;
+}
+
+.data-table tr:hover {
+  background-color:#d4e3e5;
+}
+
+.customer-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  align-items: center;
+}
+
+.round-btn {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: 0.5px solid #5ABDA5 !important;
+  border-radius: 50px !important;
+  color: #5ABDA5 !important;
+  font-size: medium;
+  text-decoration: none;
+  height: 40px;
+}
+
+.round-btn:hover {
+  background-color: #5ABDA5;
+  color: white !important;
+}
+
+.gender-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 45% !important;
+}
+
+.custom {
+  width: 78% !important;
+  margin-left: 15px;
+}
+
+.chart-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.content-tile {
+  color: coral;
+}
+
+.chart-title {
+  color: lightcoral;
+  text-align: center;
+}
+
+.danger {
+  background-color: #DC3444 !important;
+  color: white !important;
+}
+
+.profile-container {
+  padding: 10px;
+}
+
+.profile-img {
+  height: 150px;
+  width: 150px;
+  border-radius: 100px;
+}
+
+.label {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 50px;
+}

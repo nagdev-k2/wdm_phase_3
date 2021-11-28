@@ -1,0 +1,317 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.auth-content {
+  height: 100vh;
+}
+
+.auth-header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  display: flex;
+  width: 100vw;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 5px;
+  background-color: #FFE779;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1;
+  height: 100%;
+}
+
+.sidepanel {
+  width: 20%;
+  height: 100%;
+  background-color: #5ABDA5;
+  color: #FFE779;
+}
+
+.sidemenu-content {
+  width: 79.5%;
+  height: 92vh;
+  padding: 0 10px;
+  overflow-y:auto
+}
+
+.chart-row{
+  display: flex;
+}
+
+
+.entity-info{
+  flex-basis: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-header-right-menu {
+  /* width: 15%; */
+  display: flex;
+  justify-content: end;
+  /* justify-content: space-around; */
+  /* align-items: center; */
+}
+
+.menu-active{
+  background-color: #009fff !important;
+}
+
+
+
+.round-btn {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: 0.5px solid #5ABDA5 !important;
+  border-radius: 50px !important;
+  color: #5ABDA5 !important;
+  font-size: medium;
+  text-decoration: none;
+}
+
+.round-btn:hover {
+  background-color: #5ABDA5;
+  color: white !important;
+}
+
+.user-pic {
+  height: 50px;
+  width: 50px;
+  border-radius: 100px;
+}
+
+
+
+@media screen and (max-width: 1225px){
+}
+
+.chats-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.user-list {
+  width: 25%;
+  list-style: none;
+  margin: 0;
+  margin-right: 10px;
+  padding: 0;
+  height: 100%;
+  border: 1px;
+}
+
+.user-list li {
+  padding: 0 5px;
+  color: black;
+  border: 1px solid cadetblue;
+  border-top: 0;
+}
+
+.user-list .active {
+  background-color: cadetblue;
+  color: white;
+  border: 0;
+}
+
+.user-list li:hover {
+  background-color: cadetblue;
+  color: white;
+  border: 0;
+}
+
+.user-list a {
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  color: inherit;
+}
+
+.profile-image {
+  width: auto;
+  height: 40px;
+  margin: 5px 10px ;
+}
+
+.user-name {
+  padding: 0;
+  margin: 0;
+}
+
+.chat-screen {
+  width: 72%;
+  position: relative;
+}
+
+.full {
+  width: 100%;
+}
+
+.sender {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 5px;
+}
+
+.message {
+  margin: 0 5px;
+  background-color: linen;
+  border-radius: 50px;
+  padding: 0 8px;
+  margin-bottom: 5px;
+  width: auto;
+}
+
+.sender .message {
+  background-color: lavender;
+}
+
+.receiver .message {
+  background-color: linen;
+}
+
+.msg-time {
+  color: lightgrey;
+  font-size: small;
+}
+
+.receiver {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+  text-align: right;
+}
+
+.text-editor {
+  /* position: sticky;
+  bottom: 0; */
+  width: 50%;
+  border-radius: 50px;
+  display: flex;
+  padding: 5px 10px;
+  position: fixed; 
+   bottom: 20px;
+   
+}
+
+.message-field {
+  border: 0px;
+  border: 1px solid lightsteelblue;
+  border-radius: 50px;
+  margin-right: 5px;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.message-snd-btn {
+  background-color: lightsteelblue;
+  border-radius: 50px;
+  border: 0;
+  margin: 0;
+  color: white;
+  font-size: medium;
+  font-weight: bold;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
+
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.auth-menu-options {
+  width: 100%;
+  height: 50px;
+  color: #FFE779 !important;
+  text-align: left !important;
+}
+
+.auth-menu-options:hover {
+  background-color: #009fff;
+  color: white !important;
+}
+
+.auth-menu-options:focus {
+  box-shadow: none !important;
+}
+
+
+@media screen and (max-width:1000px){
+.chart-row{
+  flex-direction: column;
+  align-items: center;
+}
+}
+
+
+@media screen and (max-width:800px){
+  
+  .auth-header{
+    flex-direction: column;
+  }
+.main-menu-logo{
+  align-self: flex-start;
+}
+  
+  .auth-header-right-menu {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1 1 auto;
+  }
+  
+  
+  .auth-container {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .sidepanel {
+    width: 100%;
+    height: fit-content;
+    padding-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #5ABDA5;
+    color: #FFE779;
+  }
+  
+  .sidemenu-content {
+    width: 100%;
+  }
+
+  .auth-menu-options{
+    width:auto; 
+    flex:1 1 auto;
+  }
+
+  .text-editor {
+  width: 70%;
+  }
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.round-border {
+  border: 1px solid lightcoral;
+  padding: 5px 10px;
+  border-radius: 50px;
+}
