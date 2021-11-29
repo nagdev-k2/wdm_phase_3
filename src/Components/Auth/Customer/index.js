@@ -15,7 +15,6 @@ const CustomerPanel = ({ selectedMenu, actions }) => {
     actions.showAllEmployeesOperation()
     .then((res) => {
       map(res, usr => {
-        console.log(usr);
         if (isEqual(usr.type, 'manager')) {
           setReceiver(usr);
         }

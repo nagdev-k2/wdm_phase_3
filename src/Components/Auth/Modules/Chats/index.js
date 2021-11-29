@@ -60,7 +60,6 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 			setConversationId(parseInt(res.id, 10));
 			actions.getAllMessagesOperations({ conversationId: parseInt(res.id, 10) })
 			.then((resp) => {
-				console.log('in resp messages', resp);
 				setChat(resp);
 			})
 		})

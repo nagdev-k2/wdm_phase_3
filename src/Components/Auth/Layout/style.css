@@ -24,19 +24,17 @@ body {
   display: flex;
   flex-direction: row;
   flex: 1 1;
-  height: 100%;
+  height: 90vh;
 }
 
 .sidepanel {
   width: 20%;
-  height: 100%;
-  background-color: #5ABDA5;
-  color: #FFE779;
+  border-color: #5ABDA5;
+  box-shadow: 5px 14px 20px 5px rgba(0, 0, 0, .2);
 }
 
 .sidemenu-content {
   width: 79.5%;
-  height: 92vh;
   padding: 0 10px;
   overflow-y:auto
 }
@@ -60,11 +58,6 @@ body {
   justify-content: end;
   /* justify-content: space-around; */
   /* align-items: center; */
-}
-
-.menu-active{
-  background-color: #009fff !important;
-  color: white !important;
 }
 
 .round-btn {
@@ -97,7 +90,6 @@ body {
 .chats-container {
   display: flex;
   width: 100%;
-  height: 100%;
 }
 
 
@@ -161,6 +153,8 @@ body {
 .chat-screen {
   width: 72%;
   position: relative;
+  height: 77vh;
+  overflow-y: auto;
 }
 
 .full {
@@ -245,13 +239,19 @@ body {
 .auth-menu-options {
   width: 100%;
   height: 50px;
-  color: #FFE779 !important;
   text-align: left !important;
+  color: lightcoral !important;
+
 }
 
 .auth-menu-options:hover {
   background-color: #009fff;
-  color: white !important;
+  color: #FFE779 !important;
+}
+
+.menu-active{
+  background-color: #009fff !important;
+  color: #FFE779 !important;
 }
 
 .auth-menu-options:focus {
@@ -294,8 +294,6 @@ body {
     padding-bottom: 10px;
     display: flex;
     flex-wrap: wrap;
-    background-color: #5ABDA5;
-    color: #FFE779;
   }
   
   .sidemenu-content {
