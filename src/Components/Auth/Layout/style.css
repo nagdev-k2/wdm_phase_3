@@ -64,9 +64,8 @@ body {
 
 .menu-active{
   background-color: #009fff !important;
+  color: white !important;
 }
-
-
 
 .round-btn {
   cursor: pointer;
@@ -114,10 +113,17 @@ body {
 }
 
 .user-list li {
-  padding: 0 5px;
   color: black;
   border: 1px solid cadetblue;
   border-top: 0;
+}
+
+.user-list button {
+  color: black;
+  border: 0px;
+  border-top: 0;
+  width: 100%;
+  background-color: transparent;
 }
 
 .user-list .active {
