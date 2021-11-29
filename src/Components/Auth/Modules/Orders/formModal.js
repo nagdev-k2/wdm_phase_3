@@ -23,6 +23,7 @@ const FormModal = ({
   const [order, setOrder] = useState({});
   const [payment, setPayment] = useState({ cvv: '', expDate: '', cardNumber: '' });
   const [showOrderDetails, setShowOrderDetails] = useState(true);
+  const [responseError, setResponseErrorMsg] = useState('');
 
   useEffect(() => {
     if (isEdit) setOrder(orderData);
@@ -60,35 +61,64 @@ const FormModal = ({
     if (isEdit) {
       updateOrderAction(order)
         .then((res) => {
-          if (res) {
-            let param = {customerId: userId};
-            if (isManager) 
-              param = {admin: "admin"};
+          if (res === "true") {
+            let param = { customerId: userId };
+            if (isManager)
+              param = { admin: "admin" };
             showAllOrdersOperation(param)
               .then((resp) => {
                 setAllOrders(resp);
               })
             alert('Entry Updated Successfully.')
+            setShowOrderDetails(true);
+            setResponseErrorMsg("");
+            closeModal();
+          } else {
+            let param = { customerId: userId };
+            if (isManager)
+              param = { admin: "admin" };
+            showAllOrdersOperation(param)
+              .then((resp) => {
+                setAllOrders(resp);
+              })
+            setResponseErrorMsg(res);
+            alert(res)
           }
+
         })
     }
     else {
+      let data = order;
+      if (!isManager) {
+        data = { ...data, paymentStatus: 'completed', exDeliveryTime: '10:00AM', employeeId: 1, customerId: userId, subTotal: 8, tax: 2, amount: 10 };
+      }
       addOrderAction({ ...order, customerId: userId })
         .then((res) => {
-          if (res) {
-            let param = {customerId: userId};
-            if (isManager) 
-              param = {admin: "admin"};
+          if (res === "true") {
+            let param = { customerId: userId };
+            if (isManager)
+              param = { admin: "admin" };
             showAllOrdersOperation(param)
               .then((resp) => {
                 setAllOrders(resp);
               })
             alert('New entry created successfully.')
+            setShowOrderDetails(true);
+            setResponseErrorMsg("");
+            closeModal();
+          } else {
+            let param = { customerId: userId };
+            if (isManager)
+              param = { admin: "admin" };
+            showAllOrdersOperation(param)
+              .then((resp) => {
+                setAllOrders(resp);
+              })
+            setResponseErrorMsg(res);
+            alert(res)
           }
         })
     }
-    setShowOrderDetails(true);
-    closeModal();
   }
 
   const closeModal = () => {
@@ -96,6 +126,7 @@ const FormModal = ({
     setShowOrderDetails(true);
     setPayment({});
     setEditOrderData({ date: '', customerId: '', employeeId: '', serviceType: '', orderTime: '', pickupTime: '', deliveryTime: '', paymentStatus: '', paymentMode: '' });
+    setResponseErrorMsg("");
     handleClose();
   }
 
@@ -114,6 +145,7 @@ const FormModal = ({
           ? <OrderDetails serviceTypes={serviceTypes} order={order} setData={setData} isManager={isManager} isEdit={isEdit} />
           : <PaymentDetails payment={payment} setData={setPaymentData} />
         }
+        <span className="error-msg">{responseError}</span>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={closeModal}>Close</Button>

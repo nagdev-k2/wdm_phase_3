@@ -21,6 +21,7 @@ const FormModal = ({
 }) => {
   const isEdit = !isEmpty(customerData.name);
   const [customer, setCustomer] = useState({});
+  const [responseError, setResponseErrorMsg] = useState('');
 
   useEffect(() => {
     if (isEdit) setCustomer(customerData);
@@ -45,33 +46,50 @@ const FormModal = ({
     if (isEdit) {
       updateCustomerAction(customer)
         .then((res) => {
-          if (res) {
+          if (res === "true") {
             showAllCustomersOperation({})
               .then((resp) => {
                 setAllCustomers(resp);
               })
             alert('Entry Updated Successfully.')
+            closeModal();
+          } else {
+            showAllCustomersOperation({})
+              .then((resp) => {
+                setAllCustomers(resp);
+              })
+            setResponseErrorMsg(res);
+            alert('Error creating entry');
           }
         })
     }
     else {
-      addCustomerAction({...customer, type: 'visitor'})
+      addCustomerAction({ ...customer, type: 'visitor' })
         .then((res) => {
-          if (res) {
+          if (res === "true") {
             showAllCustomersOperation({})
               .then((resp) => {
                 setAllCustomers(resp);
               })
             alert('New entry created successfully.')
+            closeModal();
+          } else {
+            showAllCustomersOperation({})
+              .then((resp) => {
+                setAllCustomers(resp);
+              })
+            setResponseErrorMsg(res);
+            alert('error creating entry')
+
           }
         })
     }
-    closeModal();
   }
 
   const closeModal = () => {
     setCustomer({});
     setEditCustomerData({ name: '', gender: '', date: '', address: '', mobileNo: '' });
+    setResponseErrorMsg("");
     handleClose();
   }
 
@@ -80,36 +98,36 @@ const FormModal = ({
       <Modal.Header>
         <Modal.Title>{isEdit ? 'Edit' : 'Add New'} Customer</Modal.Title>
       </Modal.Header>
-      <Modal.Body>        
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="1" id="basic-addon1">
-              <img src={Name} alt="Key" className="icon" />
-            </Form.Label>
-            <Col sm="10">
-              <Form.Control
-                placeholder="Vistor's Name"
-                aria-label="name"
-                aria-describedby="basic-addon1"
-                value={customer.name}
-                disabled={isEdit}
-              />
-            </Col>
-          </Form.Group>
+      <Modal.Body>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="1" id="basic-addon1">
+            <img src={Name} alt="Key" className="icon" />
+          </Form.Label>
+          <Col sm="10">
+            <Form.Control
+              placeholder="Vistor's Name"
+              aria-label="name"
+              aria-describedby="basic-addon1"
+              value={customer.name}
+              disabled={isEdit}
+            />
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="1" id="basic-addon1">
-              <img src={Name} alt="Key" className="icon" />
-            </Form.Label>
-            <Col sm="10">
-              <Form.Control
-                placeholder="Vistor's Email"
-                aria-label="email"
-                aria-describedby="basic-addon1"
-                value={customer.email}
-                disabled={isEdit}
-              />
-            </Col>
-          </Form.Group>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="1" id="basic-addon1">
+            <img src={Name} alt="Key" className="icon" />
+          </Form.Label>
+          <Col sm="10">
+            <Form.Control
+              placeholder="Vistor's Email"
+              aria-label="email"
+              aria-describedby="basic-addon1"
+              value={customer.email}
+              disabled={isEdit}
+            />
+          </Col>
+        </Form.Group>
         <Form.Group as={Row} className="mb-3">
           <Form.Label column sm="1" id="basic-addon1">
             <img src={Phone} alt="Key" className="icon" />
@@ -185,6 +203,7 @@ const FormModal = ({
             />
           </Col>
         </Form.Group>
+        <span className="error-msg">{responseError}</span>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={closeModal}>Close</Button>

@@ -3,7 +3,7 @@ import baseURL from '../../Utils/baseUrl';
 
 export const loginOperation = ({ username, password }) => {
   return (dispatch) => {
-    const url = new URL(baseURL+"/login.php"),
+    const url = new URL(baseURL + "/login.php"),
       params = { username, password }
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     return fetch(url)
@@ -14,11 +14,11 @@ export const loginOperation = ({ username, password }) => {
           return response;
         }
         else {
-          return { errMsg: "user not found" };
+          return { errMsg: "user credentials are invalid" };
         }
       })
       .catch((err) => {
-         
+
         return err;
       });
   }
@@ -26,17 +26,17 @@ export const loginOperation = ({ username, password }) => {
 
 export const registerOperation = (user) => {
   return (dispatch) => {
-    const url = new URL(baseURL+"/register.php"),
+    const url = new URL(baseURL + "/register.php"),
+      // const url = new URL("http://localhost:8000/api/register"), // checking API built in laravel
       params = user
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     return fetch(url)
       .then((res) => res.json())
       .then((response) => {
-        if (response.error) {
-          return response.error;
+        if (response.status === "false") {
+          return response;
         } else {
-          dispatch(registerAction(user));
-          return user;
+          return response;
         }
       })
       .catch((err) => {

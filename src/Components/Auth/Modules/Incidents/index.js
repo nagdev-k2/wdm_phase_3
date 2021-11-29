@@ -12,7 +12,7 @@ import FormModal from './formModal';
 
 const Incidents = ({ actions, allIncidents, isManager, currentUser }) => {
   const managerOptions = isManager ? ['Resolve'] : ['Edit', 'Delete']
-  const tableHead = ['Inc. Id.', 'Date','Order Id', 'Issue', 'Status', ...managerOptions];
+  const tableHead = ['Inc. Id.', 'Date', 'Order Id', 'Issue', 'Status', ...managerOptions];
   const [incident, setIncident] = useState({ date: '', customerId: '', issue: '' });
   const [showFormModal, setShowFormModal] = useState(false);
   const [allIncidentsState, setAllIncidents] = useState(allIncidents);
@@ -20,7 +20,7 @@ const Incidents = ({ actions, allIncidents, isManager, currentUser }) => {
   const resolveIncidentF = (data) => {
     actions.resolveIncidentOperation(data)
       .then(() => {
-        actions.showAllIncidentsOperation({ customerId: currentUser.id, manager:isManager })
+        actions.showAllIncidentsOperation({ customerId: currentUser.id, manager: isManager })
           .then((res) => {
             setAllIncidents(res);
           })
@@ -45,7 +45,7 @@ const Incidents = ({ actions, allIncidents, isManager, currentUser }) => {
   }
 
   useEffect(() => {
-    actions.showAllIncidentsOperation({ customerId: currentUser.id, manager:isManager  })
+    actions.showAllIncidentsOperation({ customerId: currentUser.id, manager: isManager })
       .then(res => {
         setAllIncidents(res);
       })
@@ -78,13 +78,13 @@ const Incidents = ({ actions, allIncidents, isManager, currentUser }) => {
               {isManager ? (
                 <td>
                   {isEqual(data.status, 'unresolved') ?
-                  <Button
-                    variant={isEqual(data.status, 'resolved') ? 'info' : 'success'}
-                    onClick={() => resolveIncidentF(data)}>
-                    {isEqual(data.status, 'resolved') ? 'Resolved' : 'Resolve'}
-                  </Button>
-                  :
-                  data.status}
+                    <Button
+                      variant={isEqual(data.status, 'resolved') ? 'info' : 'success'}
+                      onClick={() => resolveIncidentF(data)}>
+                      {isEqual(data.status, 'resolved') ? 'Resolved' : 'Resolve'}
+                    </Button>
+                    :
+                    data.status}
                 </td>
               ) : (
                 <>

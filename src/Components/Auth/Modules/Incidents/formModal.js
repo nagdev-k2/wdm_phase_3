@@ -19,6 +19,7 @@ const FormModal = ({
 }) => {
   const isEdit = !isEmpty(incidentData.description);
   const [incident, setIncident] = useState({});
+  const [responseError, setResponseErrorMsg] = useState('');
 
   useEffect(() => {
     if (isEdit) setIncident(incidentData);
@@ -35,34 +36,51 @@ const FormModal = ({
   const submitForm = () => {
     if (isEdit) {
       updateIncidentAction(incident)
-      .then((res) => {
-        if (res) {
-          showAllIncidentsOperation({customerId: userId})
-          .then((resp) => {
-            setAllIncidents(resp);
-          })
-          alert('Entry Updated Successfully.')
-        }
-      })
+        .then((res) => {
+          if (res === "true") {
+            showAllIncidentsOperation({ customerId: userId })
+              .then((resp) => {
+                setAllIncidents(resp);
+              })
+            alert('Entry Updated Successfully.')
+            closeModal();
+          } else {
+            showAllIncidentsOperation({ customerId: userId })
+              .then((resp) => {
+                setAllIncidents(resp);
+              })
+            setResponseErrorMsg(res);
+            alert('Error udpating incident.')
+          }
+        })
     }
     else {
       addIncidentAction({ ...incident, customerId: userId })
-      .then((res)=> {
-        if (res) {
-          showAllIncidentsOperation({customerId: userId})
-          .then((resp) => {
-            setAllIncidents(resp);
-          })
-          alert('New entry created successfully.')
-        }
-      })
+        .then((res) => {
+          if (res === "true") {
+            showAllIncidentsOperation({ customerId: userId })
+              .then((resp) => {
+                setAllIncidents(resp);
+              })
+            alert('New entry created successfully.')
+            closeModal();
+          }
+          else {
+            showAllIncidentsOperation({ customerId: userId })
+              .then((resp) => {
+                setAllIncidents(resp);
+              })
+            setResponseErrorMsg(res);
+            alert('error creating incident.')
+          }
+        })
     }
-    closeModal();
   }
 
   const closeModal = () => {
     setIncident({});
     setEditIncidentData({ date: '', customerId: '', description: '' });
+    setResponseErrorMsg("");
     handleClose();
   }
 
@@ -94,7 +112,7 @@ const FormModal = ({
           <Col sm="10">
             <Form.Control
               placeholder="Order Id"
-              aria-label="orderId"
+              aria-label="order_id"
               aria-describedby="basic-addon1"
               value={incident.order_id}
               onChange={setData}
@@ -103,6 +121,7 @@ const FormModal = ({
             />
           </Col>
         </Form.Group>
+        <span className="error-msg">{responseError}</span>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={closeModal}>Close</Button>

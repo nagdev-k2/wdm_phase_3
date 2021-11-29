@@ -19,7 +19,7 @@ import FormModal from './formModal';
 
 const Orders = ({ actions, allOrders, isManager, currentUser }) => {
   const [showFormModal, setShowFormModal] = useState(false);
-  const extraOptions = isManager ? ['Expected Delivery Time',  'Customer ID', 'Payment Status'] : [];
+  const extraOptions = isManager ? ['Expected Delivery Time', 'Customer ID', 'Payment Status'] : [];
   const tableHead = ['ID', 'Date', 'Service Type', 'Pickup Time', 'Sub-Total', 'Tax', 'Total', 'Payment Mode', 'Status', ...extraOptions, 'Edit', 'Delete'];
   const [selectedOrder, setOrder] = useState({ date: '', customerId: '', serviceType: '', pickupTime: '', deliveryTime: '', paymentStatus: '', paymentMode: '' });
   const [allOrdersState, setAllOrders] = useState(allOrders);
@@ -27,9 +27,9 @@ const Orders = ({ actions, allOrders, isManager, currentUser }) => {
 
   useEffect(() => {
     actions.getServiceTypes()
-    .then((res) => {
-      setServiceTypes(res);
-    })
+      .then((res) => {
+        setServiceTypes(res);
+      })
   }, []);
 
   const editOrder = (data) => {
@@ -64,7 +64,7 @@ const Orders = ({ actions, allOrders, isManager, currentUser }) => {
   }, [])
 
   const orderStatusUpdate = (order, status) => {
-    actions.updateOrderOperation({...order, status})
+    actions.updateOrderOperation({ ...order, status })
       .then((res) => {
         if (res) {
           actions.showAllOrdersOperation({ admin: 'admin' })
@@ -94,7 +94,7 @@ const Orders = ({ actions, allOrders, isManager, currentUser }) => {
             ))}
           </tr>
           {map(allOrdersState, (data, index) => {
-            if (isEqual(currentUser.id, data.customer_id) || isManager){
+            if (isEqual(currentUser.id, data.customer_id) || isManager) {
               return (
                 <tr key={`${index}-table-entries-customer`}>
                   <td>{data.id}</td>
@@ -115,10 +115,11 @@ const Orders = ({ actions, allOrders, isManager, currentUser }) => {
                         variant="danger"
                         onClick={() => orderStatusUpdate(data, 'Reject')}>Reject</Button>
                     </div>
-                  : data.status}</td>
-                  <td>{data.delivery_time}</td>
+                    : data.status}</td>
+
                   {isManager && (
                     <>
+                      <td>{data.delivery_time}</td>
                       <td>{data.customer_id}</td>
                       <td>{data.payment_status}</td>
                     </>
@@ -145,7 +146,8 @@ const Orders = ({ actions, allOrders, isManager, currentUser }) => {
                   }
                 </tr>
               )
-            }}
+            }
+          }
           )}
         </tbody>
       </table>

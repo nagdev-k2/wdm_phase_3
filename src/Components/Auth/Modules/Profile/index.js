@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Form, Row, Col, Button, Spinner } from 'react-bootstrap';
@@ -31,35 +31,35 @@ const Profile = ({ currentUser, actions, isManager }) => {
 
   const uploadImg = () => {
     const formData = new FormData();
-    formData.append('img',img);
+    formData.append('img', img);
     setLoading(true);
-    fetch(baseURL+"/api.php", {
+    fetch(baseURL + "/image_api.php", {
       method: 'POST',
       body: formData
     })
-    .then((res) => res.json() )
-    .then((resp) => {
-      setLoading(false);
-      if (user.email.includes('@iw.com')) {
-        actions.updateEmployeeOperation({...user, img: resp.url, isProfileUpdate: true})
-        .then((response) => {
-          loginAction(response);
-        })
-      } else {
-        actions.updateCustomerOperation({...user, img: resp.url, isProfileUpdate: true})
-        .then((response) => {
-          loginAction(response);
-        })
-      }
-    })
+      .then((res) => res.json())
+      .then((resp) => {
+        setLoading(false);
+        if (user.email.includes('@iw.com')) {
+          actions.updateEmployeeOperation({ ...user, img: resp.url, isProfileUpdate: true })
+            .then((response) => {
+              loginAction(response);
+            })
+        } else {
+          actions.updateCustomerOperation({ ...user, img: resp.url, isProfileUpdate: true })
+            .then((response) => {
+              loginAction(response);
+            })
+        }
+      })
   }
 
   const updateProfileDetails = () => {
     if (isEmpty(img.name)) {
       if (user.email.includes('@iw.com')) {
-        actions.updateEmployeeOperation({...user, isProfileUpdate: true})
+        actions.updateEmployeeOperation({ ...user, isProfileUpdate: true })
       } else {
-        actions.updateCustomerOperation({...user, isProfileUpdate: true})
+        actions.updateCustomerOperation({ ...user, isProfileUpdate: true })
       }
     } else
       uploadImg();
@@ -90,7 +90,7 @@ const Profile = ({ currentUser, actions, isManager }) => {
               placeholder="ID"
               aria-describedby="basic-addon1"
               value={user.id}
-              onChange={() => {}}
+              onChange={() => { }}
               disabled
             />
           </Col>
@@ -104,7 +104,7 @@ const Profile = ({ currentUser, actions, isManager }) => {
               placeholder="Email"
               aria-describedby="basic-addon1"
               value={user.email}
-              onChange={() => {}}
+              onChange={() => { }}
               disabled
             />
           </Col>
@@ -118,7 +118,7 @@ const Profile = ({ currentUser, actions, isManager }) => {
               placeholder="Date of Joining"
               aria-describedby="basic-addon1"
               value={user.doj}
-              onChange={() => {}}
+              onChange={() => { }}
               type="date"
               disabled
             />
@@ -133,7 +133,7 @@ const Profile = ({ currentUser, actions, isManager }) => {
               placeholder="Name"
               aria-describedby="basic-addon1"
               value={user.name}
-              onChange={() => {}}
+              onChange={() => { }}
               disabled
             />
           </Col>
@@ -147,7 +147,7 @@ const Profile = ({ currentUser, actions, isManager }) => {
               placeholder="Designation"
               aria-describedby="basic-addon1"
               value={user.type.toUpperCase()}
-              onChange={() => {}}
+              onChange={() => { }}
               disabled
             />
           </Col>
@@ -192,7 +192,7 @@ const Profile = ({ currentUser, actions, isManager }) => {
                 aria_label="ssn"
                 aria-describedby="basic-addon1"
                 value={`***-**-${user.ssn}`}
-                onChange={() => {}}
+                onChange={() => { }}
                 disabled
               />
             </Col>
@@ -200,7 +200,7 @@ const Profile = ({ currentUser, actions, isManager }) => {
         )}
         <Button onClick={updateProfileDetails} >Update Details</Button>
       </Col>
-    </Row> 
+    </Row>
   );
 }
 

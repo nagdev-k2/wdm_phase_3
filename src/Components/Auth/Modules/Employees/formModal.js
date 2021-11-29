@@ -23,6 +23,7 @@ const FormModal = ({
 }) => {
   const isEdit = !isEmpty(employeeData.name);
   const [employee, setEmployee] = useState({});
+  const [responseError, setResponseErrorMsg] = useState('');
 
   useEffect(() => {
     if (isEdit) setEmployee(employeeData);
@@ -58,31 +59,36 @@ const FormModal = ({
                 setAllEmployees(resp);
               })
             alert('Entry Updated Successfully.')
+            closeModal();
           }
         })
     }
     else {
-
       addEmployeeAction(employee)
         .then((res) => {
-          if (res) {
+          if (res === "true") {
             showAllEmployeesOperation({})
               .then((resp) => {
                 setAllEmployees(resp);
               })
             alert('New entry created successfully.')
+            closeModal();
+          } else {
+            showAllEmployeesOperation({})
+              .then((resp) => {
+                setAllEmployees(resp);
+              })
+            setResponseErrorMsg(res);
+            alert('error creating record')
           }
         })
-
-      // addEmployeeAction(employee);
-      // alert('New entry created successfully.')
     }
-    closeModal();
   }
 
   const closeModal = () => {
     setEmployee({});
     setEditEmployeeData({ name: '', gender: '', date: '', address: '', mobileNo: '', type: '', last4SSN: '' });
+    setResponseErrorMsg("");
     handleClose();
   }
 
@@ -224,7 +230,7 @@ const FormModal = ({
         {isEdit ?
           (<></>)
           : <>
-            
+
             <Form.Group as={Row} className="mb-3">
               <Form.Label column sm="1" id="basic-addon1">
                 <img src={Gender} alt="Key" className="icon" />
@@ -289,6 +295,7 @@ const FormModal = ({
             </Col>
           </Form.Group>
         }
+        <span className="error-msg">{responseError}</span>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={closeModal}>Close</Button>

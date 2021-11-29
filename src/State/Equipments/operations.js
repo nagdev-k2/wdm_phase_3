@@ -10,11 +10,14 @@ export const addEquipmentOperation = (param) => {
             .then((res) => res.json())
             .then((response) => {
                 if (response.status === 'true') {
-                    return true;
+                    return "true";
+                }
+                if (response.status === 'false') {
+                    return response.msg;
                 }
             })
             .catch((err) => {
-                 
+
                 return err;
             });
     }
@@ -51,11 +54,14 @@ export const updateEquipmentOperation = (param) => {
             .then((res) => res.json())
             .then((response) => {
                 if (response.status === 'true') {
-                    return true;
+                    return "true";
+                }
+                if (response.status === 'false') {
+                    return response.msg;
                 }
             })
             .catch((err) => {
-                 
+
                 return err;
             });
     }
@@ -70,11 +76,14 @@ export const deleteEquipmentOperation = (param) => {
             .then((res) => res.json())
             .then((response) => {
                 if (response.status === 'true') {
-                    return true;
+                    return "true";
+                }
+                if (response.status === 'false') {
+                    return response.msg;
                 }
             })
             .catch((err) => {
-                 
+
                 return err;
             });
     }

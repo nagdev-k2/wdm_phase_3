@@ -4,17 +4,22 @@ import baseURL from '../../Utils/baseUrl';
 export const addOrderOperation = (param) => {
     return () => {
         const url = new URL(baseURL + "/orders/create_new_order.php"),
+            // const url = new URL("http://localhost:8000/api/create_new_order.php"),
             params = param
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
         return fetch(url)
             .then((res) => res.json())
             .then((response) => {
                 if (response.status === 'true') {
-                    return true;
+                    return "true";
+                }
+                if (response.status === 'false') {
+                    // console.log(response.msg);
+                    return response.msg;
                 }
             })
             .catch((err) => {
-                 
+
                 return err;
             });
     }
@@ -24,6 +29,7 @@ export const addOrderOperation = (param) => {
 export const showAllOrdersOperation = (param) => {
     return (dispatch) => {
         const url = new URL(baseURL + "/orders/show_all_orders.php"),
+            // const url = new URL("http://localhost:8000/api/show_all_orders.php"),
             params = param
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
         return fetch(url)
@@ -52,11 +58,14 @@ export const updateOrderOperation = (param) => {
             .then((res) => res.json())
             .then((response) => {
                 if (response.status === 'true') {
-                    return true;
+                    return "true";
+                }
+                if (response.status === 'false') {
+                    return response.msg;
                 }
             })
             .catch((err) => {
-                 
+
                 return err;
             });
     }
@@ -75,7 +84,7 @@ export const deleteOrderOperation = (param) => {
                 }
             })
             .catch((err) => {
-                 
+
                 return err;
             });
     }
@@ -83,18 +92,18 @@ export const deleteOrderOperation = (param) => {
 
 
 export const getServiceTypes = () => {
-  return () => {
-    const url = new URL(baseURL + "/orders/service_types.php"),
-      params = {}
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-    return fetch(url)
-      .then((res) => res.json())
-      .then((response) => {
-        return response;
-      })
-      .catch((err) => {
-         
-        return err;
-      });
-  }
+    return () => {
+        const url = new URL(baseURL + "/orders/service_types.php"),
+            params = {}
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+        return fetch(url)
+            .then((res) => res.json())
+            .then((response) => {
+                return response;
+            })
+            .catch((err) => {
+
+                return err;
+            });
+    }
 }

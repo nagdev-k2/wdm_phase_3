@@ -107,23 +107,28 @@ const RegisterForm = ({ onClick, handleClose, registerOperation }) => {
   const submitForm = async (e) => {
     const isValid = checkExpression();
     if (isValid) {
-      emailjs.sendForm('service_end4pxm', 'template_0qq6na4', form.current, 'user_Lixv7nn8Am6BYI6aiQ1lz')
-        .then((result) => {
-          setAlertMessage('Registered Successfully');
-          setTimeout(() => setAlertMessage(''), 5000);
-          setErrorSendingEmail(false);
-          handleClose();
-        }, (error) => {
-          setAlertMessage('Somthing went wrong');
-          setTimeout(() => setAlertMessage(''), 5000);
-          setErrorSendingEmail(true);
-        });
       const response = await registerOperation({
         email: username, name, password, address, mobileNo, type: 'customer'
       });
-      if (response && response.errorMsg) {
-        setResponseErrorMsg(response.errorMsg);
+      console.log("in regoister", response);
+      if (response && response.status !== "true") {// && response.errorMsg) {
+        console.log("true case");
+        setResponseErrorMsg(response.msg);
       } else {
+
+        emailjs.sendForm('service_end4pxm', 'template_0qq6na4', form.current, 'user_Lixv7nn8Am6BYI6aiQ1lz')
+          .then((result) => {
+            setAlertMessage('Registered Successfully');
+            setTimeout(() => setAlertMessage(''), 5000);
+            setErrorSendingEmail(false);
+            handleClose();
+          }, (error) => {
+            setAlertMessage('Somthing went wrong');
+            setTimeout(() => setAlertMessage(''), 5000);
+            setErrorSendingEmail(true);
+          });
+
+        console.log("close modal");
         handleClose();
       }
     }

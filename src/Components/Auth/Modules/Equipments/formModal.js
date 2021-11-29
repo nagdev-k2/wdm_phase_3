@@ -20,6 +20,7 @@ const FormModal = ({
 }) => {
   const isEdit = !isEmpty(equipmentData.brand);
   const [equipment, setEquipment] = useState({});
+  const [responseError, setResponseErrorMsg] = useState('');
 
   useEffect(() => {
     if (isEdit) setEquipment(equipmentData);
@@ -37,33 +38,53 @@ const FormModal = ({
     if (isEdit) {
       updateEquipmentAction(equipment)
         .then((res) => {
-          if (res) {
+          console.log("value contained in res", res);
+          if (res === "true") {
             showAllEquipmentsOperation()
               .then((resp) => {
                 setAllEquipments(resp);
               })
             alert('Entry Updated Successfully.')
+            closeModal();
+          } else {
+            showAllEquipmentsOperation()
+              .then((resp) => {
+                setAllEquipments(resp);
+              })
+            // console.log(res);
+            setResponseErrorMsg(res);
+            alert('Entry not Updated Successfully.')
           }
         })
     }
     else {
       addEquipmentAction(equipment)
         .then((res) => {
-          if (res) {
+          console.log("value contained in res", res);
+          if (res === "true") {
             showAllEquipmentsOperation()
               .then((resp) => {
                 setAllEquipments(resp);
               })
             alert('New entry created successfully.')
+            closeModal();
+          } else {
+            showAllEquipmentsOperation()
+              .then((resp) => {
+                setAllEquipments(resp);
+              })
+            setResponseErrorMsg(res);
+            alert('Entry not Updated Successfully.')
+
           }
         })
     }
-    closeModal();
   }
 
   const closeModal = () => {
     setEquipment({});
     setEditEquipmentData({ date: '', brand: '', model_no: '', type: '', price: '' });
+    setResponseErrorMsg("");
     handleClose();
   }
 
@@ -158,6 +179,7 @@ const FormModal = ({
             />
           </Col>
         </Form.Group>
+        <span className="error-msg">{responseError}</span>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={closeModal}>Close</Button>

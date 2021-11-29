@@ -3,18 +3,21 @@ import baseURL from '../../Utils/baseUrl';
 
 export const addIncidentOperation = (param) => {
   return () => {
-    const url = new URL(baseURL+"/incidents/register_incident.php"),
+    const url = new URL(baseURL + "/incidents/register_incident.php"),
       params = param
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     return fetch(url)
       .then((res) => res.json())
       .then((response) => {
         if (response.status === 'true') {
-          return true;
+          return "true";
+        }
+        if (response.status === 'false') {
+          return response.msg;
         }
       })
       .catch((err) => {
-         
+
         return err;
       });
   }
@@ -22,18 +25,21 @@ export const addIncidentOperation = (param) => {
 
 export const resolveIncidentOperation = (param) => {
   return () => {
-    const url = new URL(baseURL+"/incidents/resolve_incident.php"),
+    const url = new URL(baseURL + "/incidents/resolve_incident.php"),
       params = param
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     return fetch(url)
       .then((res) => res.json())
       .then((response) => {
         if (response.status === 'true') {
-          return true;
+          return "true";
+        }
+        if (response.status === 'false') {
+          return response.msg;
         }
       })
       .catch((err) => {
-         
+
         return err;
       });
   }
@@ -41,18 +47,21 @@ export const resolveIncidentOperation = (param) => {
 
 export const updateIncidentOperation = (param) => {
   return () => {
-    const url = new URL(baseURL+"/incidents/update_incident.php"),
+    const url = new URL(baseURL + "/incidents/update_incident.php"),
       params = param
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     return fetch(url)
       .then((res) => res.json())
       .then((response) => {
         if (response.status === 'true') {
-          return true;
+          return "true";
+        }
+        if (response.status === 'false') {
+          return response.msg;
         }
       })
       .catch((err) => {
-         
+
         return err;
       });
   }
@@ -60,7 +69,7 @@ export const updateIncidentOperation = (param) => {
 
 export const deleteIncidentOperation = (param) => {
   return () => {
-    const url = new URL(baseURL+"/incidents/delete_incident.php"),
+    const url = new URL(baseURL + "/incidents/delete_incident.php"),
       params = param
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     return fetch(url)
@@ -71,7 +80,7 @@ export const deleteIncidentOperation = (param) => {
         }
       })
       .catch((err) => {
-         
+
         return err;
       });
   }
@@ -80,7 +89,7 @@ export const deleteIncidentOperation = (param) => {
 
 export const showAllIncidentsOperation = (param) => {
   return (dispatch) => {
-    const url = new URL(baseURL+"/incidents/show_all_incidents.php"),
+    const url = new URL(baseURL + "/incidents/show_all_incidents.php"),
       params = param
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     return fetch(url)
