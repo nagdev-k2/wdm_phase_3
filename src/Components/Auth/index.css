@@ -1,8 +1,4 @@
-.chats-container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
+
 
 .user-list {
   width: 25%;
@@ -120,14 +116,6 @@
 .manager-text-editor {
   width: 60% !important;
   float: right;
-}
-
-.message-field {
-  border: 0px;
-  border: 1px solid #2962ff;
-  border-radius: 50px;
-  width: 100%;
-  padding: 0 10px;
 }
 
 .message-snd-btn {

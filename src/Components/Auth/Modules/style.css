@@ -114,3 +114,29 @@
   height: 35px;
   width: auto;
 }
+
+input[type="file"] {
+  display: none;
+}
+
+.hide {
+  display: none;
+}
+
+.profile-image-container:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.profile-image-container:hover .hide {
+  display: block;
+  background: red;
+  text-align: center;
+  border-radius: 50px;
+  color: white;
+}
+
+.msg-img {
+  width: 100px;
+  height: 100px;
+}
