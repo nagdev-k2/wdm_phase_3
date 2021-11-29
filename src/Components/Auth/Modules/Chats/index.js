@@ -2,9 +2,10 @@ import TextField from "@material-ui/core/TextField"
 import React, { useEffect, useRef, useState } from "react"
 import io from "socket.io-client";
 import { connect } from 'react-redux';
-import { cloneDeep, isEmpty, isEqual, map } from "lodash";
+import { isEmpty, isEqual, map } from "lodash";
 import { bindActionCreators } from "redux";
 
+import Camera from '../../../../Assets/camera.png'
 import { chatBaseURL } from "../../../../Utils/baseUrl";
 import "../../index.css"
 import { showAllCustomersOperation } from '../../../../State/Customers/operations';
@@ -40,16 +41,20 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 
 	const onMessageSubmit = (e) => {
 		const { name, message } = state;
-		socketRef.current.emit("message", { name, message });
-		e.preventDefault();
-		setState({ message: "", name });
-		const msgObj = { author: parseInt(currentUser.id, 10), message, conversationId, isFile: false };
-		actions.saveMessageOperations(msgObj)
-		.then((res) => {
-			const date = new Date();
-			msgObj['timestamp'] = date.getTime();
-			if (res) setChat([...chat, msgObj])
-		})
+		if (message) {
+			socketRef.current.emit("message", { name, message });
+			e.preventDefault();
+			setState({ message: "", name });
+			const msgObj = { author: parseInt(currentUser.id, 10), message, conversationId, isFile: false };
+			actions.saveMessageOperations(msgObj)
+			.then((res) => {
+				const date = new Date();
+				msgObj['timestamp'] = date.getTime();
+				if (res) setChat([...chat, msgObj])
+			})
+		} else {
+
+		}
 	}
 
 
@@ -71,21 +76,21 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 			return (isEqual(name, currentUser.name) || isEqual(author, parseInt(currentUser.id, 10))) ? (
           <div className="sender" key={`${index}-msg`}>
             <div className="user-msg">
-	            <h4 className="user-name">{(index > 0 && !isEqual(chat[index - 1].author, currentUser.id) || isEqual(index, 0)) && currentUser.name}</h4>							
+	            <h4 className="user-name">{(index > 0 && !isEqual(chat[index - 1].author, parseInt(currentUser.id, 10)) || isEqual(index, 0)) && currentUser.name}</h4>							
               <p className="message">{message}</p>
 							<span className="msg-time">{date.toLocaleString()}</span>
             </div>
-						{(index > 0 && !isEqual(chat[index - 1].name, currentUser.name) || isEqual(index, 0)) ? (
-							<img className="profile-image" src={currentUser.img} alt="profile" />
+						{(index > 0 && !isEqual(chat[index - 1].author, parseInt(currentUser.id, 10)) || isEqual(index, 0)) ? (
+							<img className="profile-image" src={currentUser.img} alt="img" />
 						) : <div className='profile-image' />}
 					</div>
         ) : (
           <div className="receiver"  key={`${index}-msg`}>
-						{isEqual(index, 0) || (index > 0 && !isEqual(chat[index - 1].author, receiver.id)) ? (
-							<img className="profile-image" src={receiver.img} alt="profile" />
+						{isEqual(index, 0) || (index > 0 && !isEqual(chat[index - 1].author, parseInt(receiver.id, 10))) ? (
+							<img className="profile-image" src={receiver.img} alt="img" />
 						) : <div className='profile-image-div' />}
             <div className="user-msg">
-							<h4 className="user-name">{(index > 0 && !isEqual(chat[index - 1].name, receiver.name) || isEqual(index, 0)) && receiver.name}</h4>
+							<h4 className="user-name">{(index > 0 && !isEqual(chat[index - 1].author, parseInt(receiver.id, 10))|| isEqual(index, 0)) && receiver.name}</h4>
               <p className="message">{message}</p>
 							<span className="msg-time">{date.toLocaleString()}</span>
 
@@ -100,7 +105,7 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 				{map(allCustomers, (customer, index) => (
 					<li key={`users-list-chat-${index}`} className={isEqual(receiver.id, customer.id) ? "active" : ''}>
 						<button onClick={() => getConversation(customer)}>
-							<img src={customer.img} className="profile-image" alt="profile " />
+							<img src={customer.img} className="profile-image" alt="img " />
 							<h4 className="user-name">{customer.name}</h4>
 						</button>
 					</li>
@@ -124,7 +129,14 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 								id="outlined-multiline-static"
 								variant="outlined"
 							/>
-							<button className="message-snd-btn">Send</button>
+							{state.message ? (
+								<button className="message-snd-btn">Send</button>
+
+							) : (
+								<button className="message-snd-btn">
+									<img src={Camera} alt="camera" className="camera-btn" />
+								</button>
+							)}
 						</div>
 					</form>
 				)}
