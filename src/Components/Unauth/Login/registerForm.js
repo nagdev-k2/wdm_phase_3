@@ -137,8 +137,8 @@ const RegisterForm = ({ onClick, handleClose, registerOperation }) => {
   return (
     <>
       <form ref={form}>
-        <input class="user-name" type="text" hidden="true" onChange={() => { }} name="UserName" value={name}></input>
-        <input class="user-email" type="text" hidden="true" name="UserEmail" onChange={() => { }} value={username}></input>
+        <input className="user-name" type="text" hidden="true" onChange={() => { }} name="UserName" value={name}></input>
+        <input className="user-email" type="text" hidden="true" name="UserEmail" onChange={() => { }} value={username}></input>
       </form>
       <Form.Group as={Row} className="mb-3">
         <Form.Label column sm="1" id="basic-addon1">

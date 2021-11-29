@@ -12,15 +12,17 @@ import Customer from '../Customer';
 import Visitor from '../Visitor';
 
 const Layout = ({ currentUser }) => {
-  const { type } = currentUser;
+  let { type } = currentUser;
+  if (isEqual(type, 'Cashier') || isEqual(type, 'LaundryMan'))
+    type="manager"
   const [selectedMenu, setMenu] = useState(MenuOptions[type][0].id);
-
+  
   const selectMenu = (id) => {
     setMenu(id);
   };
   return (
     <div className="auth-content">
-      <Header />
+      <Header type={type} />
       <div className="auth-container">
         <SidePanel availableMenu={MenuOptions[type]} selectMenu={selectMenu} selectedMenu={selectedMenu} />
         <div className="sidemenu-content" id="sidemenu-content">

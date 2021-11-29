@@ -24,19 +24,17 @@ body {
   display: flex;
   flex-direction: row;
   flex: 1 1;
-  height: 100%;
+  height: 90vh;
 }
 
 .sidepanel {
   width: 20%;
-  height: 100%;
-  background-color: #5ABDA5;
-  color: #FFE779;
+  border-color: #5ABDA5;
+  box-shadow: 5px 14px 20px 5px rgba(0, 0, 0, .2);
 }
 
 .sidemenu-content {
   width: 79.5%;
-  height: 92vh;
   padding: 0 10px;
   overflow-y:auto
 }
@@ -61,12 +59,6 @@ body {
   /* justify-content: space-around; */
   /* align-items: center; */
 }
-
-.menu-active{
-  background-color: #009fff !important;
-}
-
-
 
 .round-btn {
   cursor: pointer;
@@ -98,7 +90,6 @@ body {
 .chats-container {
   display: flex;
   width: 100%;
-  height: 100%;
 }
 
 
@@ -114,10 +105,17 @@ body {
 }
 
 .user-list li {
-  padding: 0 5px;
   color: black;
   border: 1px solid cadetblue;
   border-top: 0;
+}
+
+.user-list button {
+  color: black;
+  border: 0px;
+  border-top: 0;
+  width: 100%;
+  background-color: transparent;
 }
 
 .user-list .active {
@@ -155,6 +153,8 @@ body {
 .chat-screen {
   width: 72%;
   position: relative;
+  height: 77vh;
+  overflow-y: auto;
 }
 
 .full {
@@ -212,10 +212,9 @@ body {
 .message-field {
   border: 0px;
   border: 1px solid lightsteelblue;
-  border-radius: 50px;
-  margin-right: 5px;
   width: 100%;
   padding: 0 10px;
+  background-color: white;
 }
 
 .message-snd-btn {
@@ -239,13 +238,19 @@ body {
 .auth-menu-options {
   width: 100%;
   height: 50px;
-  color: #FFE779 !important;
   text-align: left !important;
+  color: lightcoral !important;
+
 }
 
 .auth-menu-options:hover {
   background-color: #009fff;
-  color: white !important;
+  color: #FFE779 !important;
+}
+
+.menu-active{
+  background-color: #009fff !important;
+  color: #FFE779 !important;
 }
 
 .auth-menu-options:focus {
@@ -288,8 +293,6 @@ body {
     padding-bottom: 10px;
     display: flex;
     flex-wrap: wrap;
-    background-color: #5ABDA5;
-    color: #FFE779;
   }
   
   .sidemenu-content {

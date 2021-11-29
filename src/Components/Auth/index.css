@@ -1,8 +1,4 @@
-.chats-container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
+
 
 .user-list {
   width: 25%;
@@ -49,6 +45,12 @@
   border-radius: 50px;
 }
 
+.profile-image-div {
+  width: 40px;
+  height: 40px;
+  margin: 5px 10px ;
+}
+
 .user-name {
   padding: 0;
   margin: 0;
@@ -65,8 +67,8 @@
 
 .sender {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: flex-end;
+  align-items: flex-end;
   margin-top: 5px;
 }
 
@@ -77,6 +79,8 @@
   padding: 0 8px;
   margin-bottom: 5px;
   width: auto;
+  max-width: 500px;
+  flex-wrap: wrap;
 }
 
 .sender .message {
@@ -94,13 +98,13 @@
 
 .receiver {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-top: 5px;
   text-align: right;
 }
 
 .text-editor {
-  width: 75%;
+  width: 80%;
   border-radius: 50px;
   display: flex;
   padding: 5px 10px;
@@ -114,16 +118,8 @@
   float: right;
 }
 
-.message-field {
-  border: 0px;
-  border: 1px solid lightsteelblue;
-  border-radius: 50px;
-  width: 100%;
-  padding: 0 10px;
-}
-
 .message-snd-btn {
-  background-color: lightsteelblue;
+  background-color: #2962ff;
   border-radius: 50px;
   border: 0;
   margin: 0;
@@ -133,4 +129,14 @@
   padding: 5px 8px;
   cursor: pointer;
   margin-left: 20px;
+}
+
+.user-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.receiver .user-msg {
+  align-items: flex-start !important;
 }
