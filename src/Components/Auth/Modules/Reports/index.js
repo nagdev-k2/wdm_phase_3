@@ -9,6 +9,7 @@ import {
   Bar,
   PieChart,
   Pie,
+  Cell
 } from 'recharts';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,7 +18,8 @@ import { showAllCustomersOperation } from '../../../../State/Customers/operation
 import { showAllOrdersOperation } from '../../../../State/Orders/operations';
 import { monthDataFunction, monthIncomeFunction } from './reportDataGenerator';
 
-const Report = ({ allCustomers, allOrders, actions }) => {
+const Report = ({ allOrders, actions }) => {
+  const colors = ['#8DD1E1', '#D0ED57', '#8784D8', '#81CA9C']
   const [barData, setBarData] = useState(monthDataFunction(allOrders));
   const [pieData, setPieData] = useState([])
   useEffect(() => {
@@ -38,14 +40,25 @@ const Report = ({ allCustomers, allOrders, actions }) => {
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Legend />
-            <Bar dataKey="orders" fill="#8884d8" />
+            <Bar dataKey="orders" fill="#8884d8">
+            {
+                barData.map((entry, index) => (
+                  <Cell key={`bar-${index}`} fill={colors[index]}/>
+                ))
+              }
+            </Bar>
           </BarChart>
           <div>
             <PieChart width={300} height={250}>
               <Legend />
               <Tooltip />
-              <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" fill="#82ca9d" outerRadius={80} />
+              <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" fill="#82ca9d" outerRadius={80}>
+              {
+                pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={colors[index]}/>
+                ))
+              }
+              </Pie>
             </PieChart>
             <h6 className="chart-title">Total Income</h6>
           </div>
