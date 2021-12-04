@@ -10,6 +10,7 @@ import PaymentMethod from '../../../../Assets/payment-method.png';
 import Money from '../../../../Assets/money.png';
 import Service from '../../../../Assets/service.png';
 import weight from '../../../../Assets/weight.png';
+import Address from '../../../../Assets/address.png';
 
 const OrderDetails = ({ isManager, order, setData, isEdit, serviceTypes }) => {
   const date = new Date();
@@ -95,7 +96,7 @@ const OrderDetails = ({ isManager, order, setData, isEdit, serviceTypes }) => {
         <>
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm="1" id="basic-addon1">
-              <img src={weight} alt="Key" className="icon" />
+              <img src={Address} alt="Key" className="icon" />
             </Form.Label>
             <Col sm="10">
               <Form.Control
@@ -137,7 +138,44 @@ const OrderDetails = ({ isManager, order, setData, isEdit, serviceTypes }) => {
           </Form.Group>
         </>
       )}
-
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="1" id="basic-addon1">
+            <img src={Money} alt="Key" className="icon" />
+          </Form.Label>
+          <Col sm="4">
+            <Form.Control
+              placeholder="Sub Total"
+              aria-label="amount"
+              aria-describedby="basic-addon1"
+              value={amount}
+              onChange={() => {}}
+              disabled
+              type="number"
+            />
+          </Col>
+          <Col sm="3">
+            <Form.Control
+              placeholder="Tax"
+              aria-label="tax"
+              aria-describedby="basic-addon1"
+              value={tax}
+              onChange={() => {}}
+              disabled
+              type="number"
+            />
+          </Col>
+          <Col sm="3">
+            <Form.Control
+              placeholder="Total"
+              aria-label="total"
+              aria-describedby="basic-addon1"
+              value={total}
+              onChange={() => {}}
+              disabled
+              type="number"
+            />
+          </Col>
+        </Form.Group>
     {
       isManager && (
         <>
@@ -179,44 +217,6 @@ const OrderDetails = ({ isManager, order, setData, isEdit, serviceTypes }) => {
                 onChange={setData}
                 required
                 type="time"
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="1" id="basic-addon1">
-              <img src={Money} alt="Key" className="icon" />
-            </Form.Label>
-            <Col sm="4">
-              <Form.Control
-                placeholder="Sub Total"
-                aria-label="amount"
-                aria-describedby="basic-addon1"
-                value={amount}
-                onChange={setData}
-                disabled
-                type="number"
-              />
-            </Col>
-            <Col sm="3">
-              <Form.Control
-                placeholder="Tax"
-                aria-label="tax"
-                aria-describedby="basic-addon1"
-                value={tax}
-                onChange={setData}
-                disabled
-                type="number"
-              />
-            </Col>
-            <Col sm="3">
-              <Form.Control
-                placeholder="Total"
-                aria-label="total"
-                aria-describedby="basic-addon1"
-                value={total}
-                onChange={setData}
-                disabled
-                type="number"
               />
             </Col>
           </Form.Group>

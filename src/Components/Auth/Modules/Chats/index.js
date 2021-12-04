@@ -50,8 +50,10 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 
 
 	const scrollToBottom = () => {
-		const element = document.getElementById('chat-screen');
-		element.scrollTop = element.scrollHeight - element.clientHeight;
+		if (!isEmpty(chat)) {
+			const element = document.getElementById('chat-screen');
+			element.scrollTop = element.scrollHeight - element.clientHeight;
+		}
 	}
 
 	const onTextChange = (e) => {
