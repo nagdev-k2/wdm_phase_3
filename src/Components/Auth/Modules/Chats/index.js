@@ -48,6 +48,9 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 		uploadImg();
 	}, [img]);
 
+	useEffect(() => { 
+		scrollToBottom();
+	}, [chat]);
 
 	const scrollToBottom = () => {
 		if (!isEmpty(chat)) {
@@ -72,7 +75,6 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 			.then((res) => {
 				msgObj['timestamp'] = date.getTime();
 				if (res) setChat([...chat, msgObj])
-				scrollToBottom();
 			})
 		}
 	}
@@ -96,7 +98,6 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 					const date = new Date();
 					msgObj['timestamp'] = date.getTime();
 					if (res) setChat([...chat, msgObj]);
-					scrollToBottom();
 				})
 			})
 		} 
@@ -115,7 +116,6 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 		actions.getAllMessagesOperations({ conversationId: id })
 		.then((resp) => {
 			setChat(resp);
-			scrollToBottom();
 		})
 	}
 

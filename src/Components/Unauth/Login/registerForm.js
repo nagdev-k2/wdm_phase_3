@@ -110,9 +110,7 @@ const RegisterForm = ({ onClick, handleClose, registerOperation }) => {
       const response = await registerOperation({
         email: username, name, password, address, mobileNo, type: 'customer'
       });
-      console.log("in regoister", response);
       if (response && response.status !== "true") {// && response.errorMsg) {
-        console.log("true case");
         setResponseErrorMsg(response.msg);
       } else {
 
@@ -128,7 +126,6 @@ const RegisterForm = ({ onClick, handleClose, registerOperation }) => {
             setErrorSendingEmail(true);
           });
 
-        console.log("close modal");
         handleClose();
       }
     }

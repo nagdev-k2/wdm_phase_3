@@ -132,16 +132,21 @@ const FormModal = ({
 
   const createOrder = () => {
     if (isManager || !showOrderDetails || isEdit) submitForm()
-    else setShowOrderDetails(false);
+    else {
+      if (isEqual(order.payment_type, 'Cash'))
+        submitForm()
+      else
+        setShowOrderDetails(false);
+    }
   }
-  console.log(order);
+
   return (
     <Modal show={show}>
       <Modal.Header>
         <Modal.Title>{isEdit ? 'Edit' : 'Add New'} Order</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {showOrderDetails && !isEqual(order.payment_type, 'cash')
+        {showOrderDetails
           ? <OrderDetails serviceTypes={serviceTypes} order={order} setData={setData} isManager={isManager} isEdit={isEdit} />
           : <PaymentDetails payment={payment} setData={setPaymentData} />
         }

@@ -38,7 +38,6 @@ const FormModal = ({
     if (isEdit) {
       updateEquipmentAction(equipment)
         .then((res) => {
-          console.log("value contained in res", res);
           if (res === "true") {
             showAllEquipmentsOperation()
               .then((resp) => {
@@ -51,7 +50,6 @@ const FormModal = ({
               .then((resp) => {
                 setAllEquipments(resp);
               })
-            // console.log(res);
             setResponseErrorMsg(res);
             alert('Entry not Updated Successfully.')
           }
@@ -60,7 +58,6 @@ const FormModal = ({
     else {
       addEquipmentAction(equipment)
         .then((res) => {
-          console.log("value contained in res", res);
           if (res === "true") {
             showAllEquipmentsOperation()
               .then((resp) => {

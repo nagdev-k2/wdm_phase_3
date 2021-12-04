@@ -14,7 +14,6 @@ export const addOrderOperation = (param) => {
                     return "true";
                 }
                 if (response.status === 'false') {
-                    // console.log(response.msg);
                     return response.msg;
                 }
             })
