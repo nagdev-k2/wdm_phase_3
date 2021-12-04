@@ -140,3 +140,22 @@ input[type="file"] {
   width: 100px;
   height: 100px;
 }
+
+.report-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin: 50px;
+}
+
+.report-card {
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 3px 5px 10px 1px rgb(0 0 0 / 20%);
+  border:1px solid #5ABDA5;
+}
+
+.card-val {
+  color: #009FFF;
+}

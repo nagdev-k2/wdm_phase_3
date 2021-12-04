@@ -8,6 +8,7 @@ import Address from '../../../../Assets/address.png';
 import Gender from '../../../../Assets/gender.png';
 import Phone from '../../../../Assets/phone.png';
 import Date from '../../../../Assets/calendar.png';
+import Arroba from '../../../../Assets/arroba.png';
 
 const FormModal = ({
   customerData,
@@ -116,7 +117,7 @@ const FormModal = ({
 
         <Form.Group as={Row} className="mb-3">
           <Form.Label column sm="1" id="basic-addon1">
-            <img src={Name} alt="Key" className="icon" />
+            <img src={Arroba} alt="Key" className="icon" />
           </Form.Label>
           <Col sm="10">
             <Form.Control

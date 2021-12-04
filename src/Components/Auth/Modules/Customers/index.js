@@ -43,8 +43,6 @@ const Customers = ({ actions, allCustomers }) => {
       })
   }, [])
 
-
-
   return (
     <>
       <div className="customer-header">
@@ -65,7 +63,7 @@ const Customers = ({ actions, allCustomers }) => {
           {map(allCustomersState, (data, index) => (
             <tr key={`${index}-table-entries-customer`}>
               <td>{data.id}</td>
-              <td>{data.date}</td>
+              <td>{data.doj}</td>
               <td>{data.name}</td>
               <td>{data.email}</td>
               <td>{data.address}</td>

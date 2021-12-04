@@ -9,6 +9,8 @@ import Gender from '../../../../Assets/gender.png';
 import Phone from '../../../../Assets/phone.png';
 import Profile from '../../../../Assets/user-profile.png';
 import Card from '../../../../Assets/identity-card.png';
+import Password from '../../../../Assets/lock.png';
+import Arroba from '../../../../Assets/arroba.png';
 
 const FormModal = ({
   employeeData,
@@ -99,8 +101,6 @@ const FormModal = ({
       </Modal.Header>
       <Modal.Body>
 
-        {isEdit ?
-          (<>
             <Form.Group as={Row} className="mb-3">
               <Form.Label column sm="1" id="basic-addon1">
                 <img src={Name} alt="Key" className="icon" />
@@ -111,14 +111,14 @@ const FormModal = ({
                   aria-label="name"
                   aria-describedby="basic-addon1"
                   value={employee.name}
-                  readonly
+                  disabled={isEdit}
                 />
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3">
               <Form.Label column sm="1" id="basic-addon1">
-                <img src={Name} alt="Key" className="icon" />
+                <img src={Arroba} alt="Key" className="icon" />
               </Form.Label>
               <Col sm="10">
                 <Form.Control
@@ -126,58 +126,13 @@ const FormModal = ({
                   aria-label="email"
                   aria-describedby="basic-addon1"
                   value={employee.email}
-                  readonly
+                  disabled={isEdit}
                 />
               </Col>
             </Form.Group>
-
-
-          </>)
-          : (<>
-
-            <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="1" id="basic-addon1">
-                <img src={Name} alt="Key" className="icon" />
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control
-                  placeholder="Employee's Name"
-                  aria-label="name"
-                  aria-describedby="basic-addon1"
-                  value={employee.name}
-                  onChange={setData}
-                  required
-                />
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="1" id="basic-addon1">
-                <img src={Name} alt="Key" className="icon" />
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control
-                  placeholder="Employee's Email"
-                  aria-label="email"
-                  aria-describedby="basic-addon1"
-                  value={employee.email}
-                  onChange={setData}
-                  required
-                />
-              </Col>
-            </Form.Group>
-
-
-          </>)}
-
-
-
-        {isEdit ?
-          (<></>)
-          :
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm="1" id="basic-addon1">
-              <img src={Name} alt="Key" className="icon" />
+              <img src={Password} alt="Key" className="icon" />
             </Form.Label>
             <Col sm="10">
               <Form.Control
@@ -191,8 +146,6 @@ const FormModal = ({
               />
             </Col>
           </Form.Group>
-        }
-
         <Form.Group as={Row} className="mb-3">
           <Form.Label column sm="1" id="basic-addon1">
             <img src={Phone} alt="Key" className="icon" />
@@ -228,7 +181,16 @@ const FormModal = ({
 
 
         {isEdit ?
-          (<></>)
+          (<>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm="1" id="basic-addon1">
+                <img src={Gender} alt="Key" className="icon" />
+              </Form.Label>
+              <Form.Label column sm="1" id="basic-addon1">
+                {employee.gender}
+              </Form.Label>
+              </Form.Group>
+          </>)
           : <>
 
             <Form.Group as={Row} className="mb-3">
@@ -275,9 +237,6 @@ const FormModal = ({
             <option value="Delivery/Pickup">Delivery/Pickup</option>
           </select>
         </Form.Group>
-        {isEdit ?
-          (<></>)
-          :
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm="1" id="basic-addon1">
               <img src={Card} alt="Key" className="icon" />
@@ -291,10 +250,10 @@ const FormModal = ({
                 onChange={setData}
                 required
                 type="number"
+                disabled={isEdit}
               />
             </Col>
           </Form.Group>
-        }
         <span className="error-msg">{responseError}</span>
       </Modal.Body>
       <Modal.Footer>
