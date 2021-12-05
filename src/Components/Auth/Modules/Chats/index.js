@@ -8,7 +8,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from  'react-bootstrap/Tooltip';
 
 import Camera from '../../../../Assets/camera.png'
-import baseURL, { chatBaseURL } from "../../../../Utils/baseUrl";
+import {imgBaseURL, chatBaseURL } from "../../../../Utils/baseUrl";
 import "../../index.css"
 import { showAllCustomersOperation } from '../../../../State/Customers/operations';
 import { getConversationOperation, getAllMessagesOperations, saveMessageOperations } from "../../../../State/Chats/operations";
@@ -84,7 +84,7 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 			const formData = new FormData();
 			formData.append('img', img);
 			setLoading(true);
-			fetch(baseURL+"/api.php", {
+			fetch(imgBaseURL+"/image_api.php", {
 				method: 'POST',
 				body: formData
 			})
@@ -211,14 +211,15 @@ const Chats = ({ currentUser, isManager, actions, manager }) => {
 							) : (
 									<label className="message-snd-btn">
 										{isLoading ? (
-											<Spinner />
+											<Spinner animation="border" role="status">
+												<span className="visually-hidden">Loading...</span>
+											</Spinner>
 										) : (
 											<>
 												<input type="file" accept="image/*" name="img" onChange={(e) => setImg(e.target.files[0])} />
 												<img src={Camera} alt="camera" className="camera-btn" />
 											</>
 										)}
-										
 									</label>
 							)}
 						</div>

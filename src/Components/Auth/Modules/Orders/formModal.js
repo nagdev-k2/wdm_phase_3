@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { isEmpty, isEqual } from 'lodash';
+import { isEmpty, isEqual, filter } from 'lodash';
 import { Button } from 'react-bootstrap';
 
 import OrderDetails from './orderDetails';
@@ -88,11 +88,12 @@ const FormModal = ({
         })
     }
     else {
-      let data = order;
-      if (!isManager) {
-        data = { ...data, paymentStatus: 'completed', exDeliveryTime: '10:00AM', employeeId: 1, customerId: userId, subTotal: 8, tax: 2, amount: 10 };
-      }
-      addOrderAction({ ...order, customerId: userId })
+      const selectedService = filter(serviceTypes, {service_type: order.service_type});
+      let amount =
+        (selectedService.length > 0 && selectedService[0].rate_per_pound ? selectedService[0].rate_per_pound : '') * order.weight;
+      let tax = amount * 6.25 / 100;
+      let total = amount + tax;
+      addOrderAction({ ...order, customerId: userId, tax, amount, total })
         .then((res) => {
           if (res === "true") {
             let param = { customerId: userId };

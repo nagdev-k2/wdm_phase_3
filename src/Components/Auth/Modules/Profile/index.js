@@ -14,7 +14,7 @@ import SSN from '../../../../Assets/identity-card.png';
 import { updateCustomerOperation } from '../../../../State/Customers/operations';
 import { updateEmployeeOperation } from '../../../../State/Employees/operations';
 import { loginAction } from '../../../../State/Users/actions';
-import baseURL from '../../../../Utils/baseUrl';
+import {imgBaseURL} from '../../../../Utils/baseUrl';
 
 const Profile = ({ currentUser, actions, isManager }) => {
   const [user, setUserDetails] = useState(currentUser);
@@ -40,7 +40,7 @@ const Profile = ({ currentUser, actions, isManager }) => {
     const formData = new FormData();
     formData.append('img', img);
     setLoading(true);
-    fetch(baseURL + "/image_api.php", {
+    fetch(imgBaseURL + "/image_api.php", {
       method: 'POST',
       body: formData
     })
@@ -64,8 +64,10 @@ const Profile = ({ currentUser, actions, isManager }) => {
   const updateProfileDetails = () => {
     if (isEmpty(img.name)) {
       if (user.email.includes('@iw.com')) {
+        console.log(user);
         actions.updateEmployeeOperation({ ...user, isProfileUpdate: true })
       } else {
+        console.log('in else', user);
         actions.updateCustomerOperation({ ...user, isProfileUpdate: true })
       }
     } else
